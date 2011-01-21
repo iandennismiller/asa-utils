@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from setuptools import setup
+from distutils.core import setup
 
 setup(name='asa_utils',
     version='0.1',
@@ -15,7 +15,7 @@ setup(name='asa_utils',
     data file for statistical analysis.""",
     package_dir = {'': 'lib'},
     scripts=['bin/asa-utils.py'],
-    # data_files = 't',
+    data_files = 'doc',
     license="GPL v2",
     platforms = ["any"],
 )
