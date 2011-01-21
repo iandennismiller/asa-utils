@@ -7,4 +7,4 @@ def sdist():
 
 def tag(ver):
     cmd = 'svn cp https://asa-utils.googlecode.com/svn/trunk/ https://asa-utils.googlecode.com/svn/tags/%s/'
-    print local(cmd % ver)
+    os.system(cmd % ver)
