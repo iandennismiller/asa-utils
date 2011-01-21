@@ -1,6 +1,8 @@
 install.bat
 setup.py
-bin/asa-utils.py
+bin/asa-utils
+bin/asa-utils.bat
+doc/INSTALL.TXT
 doc/LICENSE.TXT
 doc/README.TXT
 lib/asa_utils/Amalgamate.py

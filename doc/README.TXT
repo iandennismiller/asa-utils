@@ -1,3 +1,5 @@
+#summary README.TXT and ReadMe.wiki
+
 asa-utils
 
 (c) 2011 Ian Dennis Miller
@@ -22,18 +24,17 @@ it is likely to work with Python 2.5 and 2.7 as well.
 
 == 4. installation ==
 
-To install asa-utils, do something like the following:
+To install asa-utils, do something like the following (possibly with sudo):
 
-    sudo python setup.py install
+    python setup.py install
 
 == 5. usage ==
 
 To use asa-utils to combine many data files into one, first collect all of
 the data files into a single directory, then use this syntax:
 
-    asa-utils.py amalgamate data_directory > output.csv
+    asa-utils amalgamate data_directory > output.csv
 
 == 6. support ==
 
 http://asa-utils.googlecode.com
-

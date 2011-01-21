@@ -1,0 +1,41 @@
+#summary Quick start instructions for Windows and UNIX systems (including OS X)
+#labels Featured
+
+== UNIX Quick Start ==
+
+Abbreviated instructions for UNIX-like systems (including OS X).
+
+{{{
+VERSION=0.1.3
+wget http://asa-utils.googlecode.com/files/asa_utils-$VERSION.tar.gz
+tar xvfz asa_utils-$VERSION.tar.gz
+cd asa_utils-$VERSION
+sudo python setup.py install
+asa-utils.py amalgamate some_directory > output.csv
+}}}
+
+Be sure to set the `VERSION=0.x.x` line to the newest version number listed in
+the Downloads section.
+
+http://code.google.com/p/asa-utils/downloads/list
+
+== Windows Quick Start ==
+
+1. If necessary, download most recent version of Python 2.6, and double-click 
+to install it.
+
+http://www.python.org/download/releases/
+
+As of August 24, 2010 the latest version of Python 2.6 is 2.6.6:
+
+http://www.python.org/ftp/python/2.6.6/python-2.6.6.msi
+
+If a newer version of Python 2.6.x is available, be sure to download that.
+Do not get 2.7.x, because that's a different story entirely.
+
+2. Download the latest version of the .ZIP archive containing asa-utils, and 
+double-click to extract it.
+
+http://code.google.com/p/asa-utils/downloads/list
+
+3. Open the unarchived folder, and double-click *install.bat*
