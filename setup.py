@@ -15,7 +15,6 @@ setup(name='asa_utils',
     data file for statistical analysis.""",
     package_dir = {'': 'lib'},
     scripts=['bin/asa-utils.py'],
-    data_files = 'doc',
     license="GPL v2",
     platforms = ["any"],
 )
