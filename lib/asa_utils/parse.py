@@ -100,8 +100,3 @@ class parse(object):
             'amalgamate_labels': self.amalgamate_labels,
         }
         return h
-
-class amalgamate(object):
-    def __init__(self):
-        pass
-    
