@@ -1,7 +1,11 @@
+# asa-utils
+# (c) 2011 Ian Dennis Miller
+# http://code.google.com/p/asa-utils/
+
 from __future__ import with_statement
 import csv, sys, re
 
-class parse(object):
+class Parse(object):
     
     def __init__(self, filename):
         with open(filename) as f:
@@ -70,7 +74,7 @@ class parse(object):
         data_file.next()
         
         # get filename
-        data_filename = data_file.next()[0]
+        self.data_filename = data_file.next()[0]
 
         # skip Labels
         data_file.next()
@@ -95,13 +99,9 @@ class parse(object):
             'band_count': self.band_count,
             'bands_names': self.bands_names,
             'channel_count': self.channel_count,
+            'filename': self.data_filename,
             'labels': self.labels,
             'values': self.values,
             'amalgamate_labels': self.amalgamate_labels,
         }
         return h
-
-class amalgamate(object):
-    def __init__(self):
-        pass
-    
