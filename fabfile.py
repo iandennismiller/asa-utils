@@ -2,7 +2,7 @@ from fabric.api import local
 import os
 
 def sdist():
-    print local('cp wiki/ReadMe.wiki doc/README.TXT; cp wiki/StartHere.wiki doc/INSTALL.TXT')
+    print local('cp wiki/ReadMe.wiki doc/README.TXT; cp wiki/InstallHelp.wiki doc/INSTALL.TXT')
     print local('rm -rf build; python setup.py sdist --formats=gztar,zip')
 
 def tag():
