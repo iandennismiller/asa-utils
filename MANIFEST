@@ -1,3 +1,4 @@
+install.bat
 setup.py
 bin/asa-utils.py
 doc/LICENSE.TXT
