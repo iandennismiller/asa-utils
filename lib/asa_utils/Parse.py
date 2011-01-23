@@ -1,14 +1,18 @@
 # asa-utils
 # (c) 2011 Ian Dennis Miller
-# http://code.google.com/p/asa-utils/
+# http://asa-utils.googlecode.com
 
 from __future__ import with_statement
-import csv, sys, re
+import csv, sys, re, logging
+
+class ParseError(Exception):
+    pass
 
 class Parse(object):
-    
     def __init__(self, filename):
-        with open(filename) as f:
+        self.filename = filename
+        logging.getLogger('asa_utils').debug("attempting to parse %s" % self.filename)
+        with open(self.filename) as f:
             data_file = csv.reader(f, delimiter='\t')
             self.read_file(data_file)
             
@@ -16,8 +20,8 @@ class Parse(object):
         # verify data export file type
         ident = data_file.next()[0]
         if ident != '# Time Frequency Data Export':
-            print "data file does not appear to be Time Frequency Data"
-            sys.exit()
+            logging.getLogger('asa_utils').error("data file does not appear to be Time Frequency Data")
+            raise ParseError
             
         # skip metadata
         for i in range(0, 8):
@@ -28,8 +32,8 @@ class Parse(object):
         if band_count_line[0] == 'NumberOfBands=':
             self.band_count = int(band_count_line[1])
         else:
-            print "unable to determine number of bands in data"
-            sys.exit()
+            logging.getLogger('asa_utils').error("unable to determine number of bands in data")
+            raise ParseError
         
         # remove BandsData
         data_file.next()
@@ -40,8 +44,8 @@ class Parse(object):
         data_file.next()
 
         if data_file.next()[0] != 'BandsNames':
-            print "unable to determine name of bands in data"
-            sys.exit()
+            logging.getLogger('asa_utils').error("unable to determine name of bands in data")
+            raise ParseError
         
         self.bands_names = []
         for i in range(0, self.band_count):
@@ -52,8 +56,8 @@ class Parse(object):
         if channel_count_line[0] == 'NumberOfChannels=':
             self.channel_count = int(channel_count_line[1])
         else:
-            print "unable to determine number of channels in data"
-            sys.exit()
+            logging.getLogger('asa_utils').error("unable to determine number of channels in data")
+            raise ParseError
         
         # skip unit measure
         data_file.next()
@@ -93,6 +97,8 @@ class Parse(object):
                     self.amalgamate_labels.append('%s_%s' % (band_name, label))
         else:
             self.amalgamate_labels = self.labels
+        
+        logging.getLogger('asa_utils').debug("successfully parsed %s" % self.filename)
         
     def as_hash(self):
         h = {

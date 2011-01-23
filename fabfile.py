@@ -9,3 +9,7 @@ def tag():
     ver = local('python setup.py --version').rstrip()
     cmd = 'svn cp https://asa-utils.googlecode.com/svn/trunk/ https://asa-utils.googlecode.com/svn/tags/%s/'
     os.system(cmd % ver)
+
+def test():
+    cmd = 'nosetests -v t/test_fft_data.py'
+    os.system(cmd)
