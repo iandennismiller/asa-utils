@@ -6,7 +6,7 @@
 
 import sys, unittest
 from nose.plugins.attrib import attr
-sys.path.append('/Users/idm/Code/academic/asa-utils/lib')
+sys.path.append('/Users/idm/Code/saperea/asa-utils/lib')
 
 @attr(priority=1)
 def test_parse():
