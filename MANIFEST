@@ -1,6 +1,7 @@
 setup.py
 bin/asa-utils.py
-doc/INSTALL.TXT
+doc/INSTALL-UNIX.TXT
+doc/INSTALL-WIN.TXT
 doc/LICENSE.TXT
 doc/README.TXT
 lib/asa_utils/Amalgamate.py
