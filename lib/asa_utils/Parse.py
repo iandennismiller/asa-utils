@@ -71,7 +71,7 @@ class Parse(object):
             if re.search(r'\:$', values_read[0]):
                 values_read.pop(0)
             for j in range(0, self.channel_count):
-                self.values.append(values_read[j])
+                self.values.append(float(values_read[j]))
 
         # skip number of data sets
         data_file.next()
@@ -105,7 +105,8 @@ class Parse(object):
             'band_count': self.band_count,
             'bands_names': self.bands_names,
             'channel_count': self.channel_count,
-            'filename': self.data_filename,
+            #'filename': self.data_filename,
+            'filename': self.filename,
             'labels': self.labels,
             'values': self.values,
             'amalgamate_labels': self.amalgamate_labels,

@@ -2,7 +2,7 @@
 # (c) 2011 Ian Dennis Miller
 # http://asa-utils.googlecode.com
 
-import glob, logging, os
+import glob, logging, os, csv
 from Parse import Parse, ParseError
 
 class EmptyDataFolder(Exception):
@@ -33,11 +33,31 @@ class Amalgamate(object):
         
         labels = self.parsers[0].as_hash()['amalgamate_labels']
         
-        output = "filename\t%s\n" % '\t'.join(labels)
-        
+        result = []
+        row = ['filename']
+        row.extend(labels)
+        result.append(row)
         for p in self.parsers:
             h = p.as_hash()
-            output += "%s\t%s\n" % (h['filename'], '\t'.join(h['values']))
-            
+            row = [h['filename']]
+            row.extend(h['values'])
+            result.append(row)
+
+        return result
+
+    def as_string(self, results):
+        output = ""
+        for row in results:
+            output += "%s\n" % '\t'.join(str(i) for i in row)
         return output
-        
+    
+    def export_csv(self, results, output_file):
+        logging.getLogger('asa_utils').info("Output file is %s" % output_file)
+        f = open(output_file, 'wb')
+        writer = csv.writer(f, dialect='excel')
+        #writer = csv.writer(f, delimiter=',', quotechar='"', 
+        #    doublequote=True, skipinitialspace = False, 
+        #    lineterminator = '\r\n', quoting = csv.QUOTE_NONNUMERIC)
+        for row in results:
+            writer.writerow(row)
+        f.close()

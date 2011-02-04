@@ -8,7 +8,7 @@ import sys, platform, re, os, logging
 class Interactive(object):
     def __init__(self):
         pass
-    
+
     def run(self):
         c = ''
         while c.upper() not in ['Q']:
@@ -24,6 +24,7 @@ class Interactive(object):
                 out_path = os.path.expanduser('~')
                 if re.search(r'^Windows', platform.platform()):
                     out_path = os.path.join(out_path, 'Desktop')                
+                output_file = os.path.join(out_path, "asa-utils.csv")
 
                 m = re.match(r'"(.*)"', source_path) 
                 if m:
@@ -33,14 +34,9 @@ class Interactive(object):
                 try:
                     a = Amalgamate(source_path)
                     results = a.run()
+                    a.export_csv(results, output_file)
                 except EmptyDataFolder:
                     continue
-                
-                output_file = os.path.join(out_path, "asa-utils.csv")
-                logging.getLogger('asa_utils').info("Output file is %s" % output_file)
-                f = open(output_file, 'w')
-                f.write(results)
-                f.close()
             elif c.upper() == 'D':
                 logging.getLogger('asa_utils').setLevel(logging.DEBUG)
                 print "Debugging is enabled"
