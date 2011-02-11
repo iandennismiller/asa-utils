@@ -43,7 +43,13 @@ class Amalgamate(object):
             row.extend(h['values'])
             result.append(row)
 
-        return result
+        meta = ["__meta__", "version", 1, 
+            "sampling frequency", self.parsers[0].sampling_frequency,
+            "epoch length", self.parsers[0].epoch_length,
+            "epochs per channel", self.parsers[0].epochs,
+            ]
+
+        return (result, meta)
 
     def as_string(self, results):
         output = ""
@@ -51,13 +57,14 @@ class Amalgamate(object):
             output += "%s\n" % '\t'.join(str(i) for i in row)
         return output
     
-    def export_csv(self, results, output_file):
+    def export_csv(self, results, meta_info, output_file):
         logging.getLogger('asa_utils').info("Output file is %s" % output_file)
         f = open(output_file, 'wb')
         writer = csv.writer(f, dialect='excel')
         #writer = csv.writer(f, delimiter=',', quotechar='"', 
         #    doublequote=True, skipinitialspace = False, 
         #    lineterminator = '\r\n', quoting = csv.QUOTE_NONNUMERIC)
+        writer.writerow(meta_info)
         for row in results:
             writer.writerow(row)
         f.close()

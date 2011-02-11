@@ -62,5 +62,5 @@ def test_csv_export():
     from asa_utils.Amalgamate import Amalgamate
     path = '/Users/idm/Code/saperea/asa-utils/t/data/amalgam'
     a = Amalgamate(path)
-    results = a.run()
-    a.export_csv(results, '/tmp/out.csv')
+    (results, meta) = a.run()
+    a.export_csv(results, meta, '/tmp/out.csv')

@@ -25,7 +25,13 @@ class Parse(object):
             
         # skip metadata
         for i in range(0, 8):
-            data_file.next()
+            data = data_file.next()
+            if i == 3:
+                self.sampling_frequency = float(data[1])
+            elif i == 4:
+                self.epoch_length = float(data[1])
+            elif i == 5:
+                self.epochs = int(data[1])
         
         # determine number of bands
         band_count_line = data_file.next()

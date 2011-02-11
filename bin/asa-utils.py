@@ -16,7 +16,7 @@ def do_amalgamate():
     path = sys.argv[2]
     a = Amalgamate(path)
     try:
-        result = a.run()
+        (result, meta) = a.run()
         print a.as_string(result)
     except EmptyDataFolder:
         print "Data folder appears to contain no data files?"
