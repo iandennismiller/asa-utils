@@ -116,5 +116,6 @@ class Parse(object):
             'labels': self.labels,
             'values': self.values,
             'amalgamate_labels': self.amalgamate_labels,
+            'epochs': self.epochs,
         }
         return h

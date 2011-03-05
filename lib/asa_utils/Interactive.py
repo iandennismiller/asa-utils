@@ -12,7 +12,7 @@ class Interactive(object):
     def run(self):
         c = ''
         while c.upper() not in ['Q']:
-            print "\n[asa-utils main menu]\n"
+            print "\n[ asa-utils main menu ]\n"
             print "(a) Amalgamate several data files into a single spreadsheet"
             print "(d) Turn on debugging output"
             print "(q) Quit"
@@ -36,8 +36,8 @@ class Interactive(object):
 
                 try:
                     a = Amalgamate(source_path)
-                    (results, meta) = a.run()
-                    a.export_csv(results, meta, output_file)
+                    results = a.run()
+                    a.export_csv(results, output_file)
                 except EmptyDataFolder:
                     continue
             elif c.upper() == 'D':
