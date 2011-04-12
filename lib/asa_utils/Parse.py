@@ -117,5 +117,6 @@ class Parse(object):
             'values': self.values,
             'amalgamate_labels': self.amalgamate_labels,
             'epochs': self.epochs,
+            'data': dict(zip(self.amalgamate_labels, self.values))
         }
         return h

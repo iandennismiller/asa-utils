@@ -33,8 +33,8 @@ def test_amalgamate():
 def test_empty_amalgamate():
     from asa_utils.Amalgamate import Amalgamate, EmptyDataFolder
     path = '/Users/idm/Code/academic/asa-utils/t/data/empty'
-    a = Amalgamate(path)
     try:
+        a = Amalgamate(path)
         results = a.run()
         assert False
     except EmptyDataFolder:
@@ -61,6 +61,13 @@ def test_folder_with_errors():
 def test_csv_export():
     from asa_utils.Amalgamate import Amalgamate
     path = '/Users/idm/Code/academic/asa-utils/t/data/amalgam'
+    a = Amalgamate(path)
+    results = a.run()
+    a.export_csv(results, '/tmp/out.csv')
+
+def test_removed_channels():
+    from asa_utils.Amalgamate import Amalgamate
+    path = '/Users/idm/Code/academic/asa-utils/t/data/rem_channels'
     a = Amalgamate(path)
     results = a.run()
     a.export_csv(results, '/tmp/out.csv')

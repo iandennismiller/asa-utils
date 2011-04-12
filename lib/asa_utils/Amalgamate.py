@@ -18,7 +18,6 @@ class Amalgamate(object):
             logging.getLogger('asa_utils').error("Directory does not exist, or is empty: %s" % path)
             raise EmptyDataFolder
 
-    def run(self):
         self.parsers = []
         for file in self.files:
             try:
@@ -30,9 +29,22 @@ class Amalgamate(object):
         if len(self.parsers) == 0:
             logging.getLogger('asa_utils').error("Unable to parse any data files in this folder: %s" % self.path)
             raise EmptyDataFolder
-        
-        labels = self.parsers[0].as_hash()['amalgamate_labels']
-        
+
+    "given a list of parser objects, figure out an authoritative listing of columns"
+    def infer_colnames(self):
+        names = set()
+        for p in self.parsers:
+            for c in p.as_hash()['amalgamate_labels']:
+                names.add(c)
+        for p in self.parsers:
+            if len(p.as_hash()['amalgamate_labels']) == len(names):
+                return p.as_hash()['amalgamate_labels']
+        return names
+
+    def run(self):
+        #labels = self.parsers[0].as_hash()['amalgamate_labels']
+        labels = self.infer_colnames()
+
         result = []
         row = ['filename']
         row.extend(labels)
@@ -41,7 +53,12 @@ class Amalgamate(object):
         for p in self.parsers:
             h = p.as_hash()
             row = [h['filename']]
-            row.extend(h['values'])
+            #row.extend(h['values'])
+            for key in labels:
+                if key in h['data']:
+                    row.append(h['data'][key])
+                else:
+                    row.append("null")
             row.append(h['epochs'])
             result.append(row)
 
