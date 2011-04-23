@@ -6,7 +6,9 @@ This open source project is unaffiliated with ANT.
 
 # Getting Started
 
-See the wiki (https://github.com/iandennismiller/asa-utils/wiki) to learn how to use asa-utils on Windows and UNIX systems (including OS X).  This page demonstrates typical use of asa-utils.  For help installing on Windows systems, make sure to read [[InstallWindows]].  For help installing on UNIX systems, read [[InstallUnix]].
+See the wiki to learn how to install and use asa-utils on Windows and UNIX systems (including OS X).  
+
+https://github.com/iandennismiller/asa-utils/wiki
 
 # Downloads
 
