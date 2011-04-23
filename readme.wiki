@@ -1,0 +1,24 @@
+#summary Quick start instructions
+
+= Installation =
+
+If you are installing on a Windows system, then see the instructions for InstallWindows.
+
+If you are installing on UNIX (Linux, OS X, BSD, or even Cygwin) then see InstallUnix.
+
+= Quick usage on Windows =
+
+    # Make a directory on your desktop called "Data"
+    # Drag your data files into it
+    # Open *Start -> All Programs -> ASA Utils -> asa-utils*
+    # Select "Amalgamate" from the menu.
+    # Drag your Data folder from the Desktop *onto the text window*, which will automatically type the full name of the folder for you. Hit enter.
+    # The results will be saved to your Desktop as *asa-utils.csv*.  Now rename the file or put it somewhere for safekeeping.
+    # If it didn't work the way you expected, try turning on debugging output, which will be more verbose about what is happening.
+
+= Quick usage on UNIX =
+
+    # Make a directory called Data, and put your data files in it.
+    # `asa-utils.py amalgamate Data > output.csv`
+
+You can also run `asa-utils.py interactive` and it will behave just like the Windows instructions above.
